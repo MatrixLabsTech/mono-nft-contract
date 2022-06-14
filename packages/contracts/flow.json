@@ -1,0 +1,85 @@
+{
+  "emulators": {
+    "default": {
+      "port": 3569,
+      "serviceAccount": "emulator-account"
+    }
+  },
+  "contracts": {
+    "FUSD": {
+      "source": "./cadence/contracts/lib/FUSD.cdc",
+      "aliases": {
+        "testnet": "0xe223d8a629e49c68"
+      }
+    },
+    "FungibleToken": {
+      "source": "./cadence/contracts/lib/FungibleToken.cdc",
+      "aliases": {
+        "emulator": "ee82856bf20e2aa6",
+        "testnet": "9a0766d93b6608b7"
+      }
+    },
+    "FlowToken": {
+      "source": "./cadence/contracts/lib/FlowToken.cdc",
+      "aliases": {
+        "testnet": "7e60df042a9c0868",
+        "emulator": "0ae53cb6e3f42a79",
+        "mainnet": "1654653399040a61"
+      }
+    },
+    "NonFungibleToken": {
+      "source": "./cadence/contracts/lib/NonFungibleToken.cdc",
+      "aliases": {
+        "testnet": "631e88ae7f1d7c20",
+        "mainnet": "1d7e57aa55817448"
+      }
+    },
+    "MetadataViews": {
+      "source": "./cadence/contracts/lib/MetadataViews.cdc",
+      "aliases": {
+        "testnet": "631e88ae7f1d7c20",
+        "mainnet": "1d7e57aa55817448"
+      }
+    },
+    "MonoCat": "./cadence/contracts/MonoCat.cdc"
+  },
+  "networks": {
+    "emulator": "127.0.0.1:3569",
+    "mainnet": "access.mainnet.nodes.onflow.org:9000",
+    "testnet": "access.devnet.nodes.onflow.org:9000"
+  },
+  "accounts": {
+    "emulator-account2": {
+      "address": "01cf0e2f2f715450",
+      "key": "e00e33ee30228635894dab4640fd7aa4fd4e8b3218315c3042f73e1ad234acbb",
+      "chain": "flow-emulator"
+    },
+    "emulator-account": {
+      "address": "f8d6e0586b0a20c7",
+      "key": "e00e33ee30228635894dab4640fd7aa4fd4e8b3218315c3042f73e1ad234acbb"
+    },
+    "testnet-account": {
+      "address": "0x7f3812b53dd4de20",
+      "key": "7a437e23da24e7772896c556262fafa58af9fde12890be5f33509c8ce8b94e64"
+    },
+    "testnet-account2": {
+      "address": "0xa56c5e5fd9b9ca22",
+      "key": "7a437e23da24e7772896c556262fafa58af9fde12890be5f33509c8ce8b94e64"
+    },
+    "testnet-account3": {
+      "address": "0xeca46256a90fc4ae",
+      "key": "7a437e23da24e7772896c556262fafa58af9fde12890be5f33509c8ce8b94e64"
+    }
+  },
+  "deployments": {
+    "emulator": {
+      "emulator-account": [
+      ]
+    },
+    "testnet": {
+      "testnet-account": [
+        "MonoCat"
+      ]
+    }
+  }
+}
