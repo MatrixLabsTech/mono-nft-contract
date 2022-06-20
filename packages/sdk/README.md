@@ -1,6 +1,6 @@
 ### Install
 
-`yarn add @matrix-labs/matrix-marketplace-nft-sdk`
+`yarn add @matrix-labs/mono-nft-sdk`
 
 ```typescript
 
