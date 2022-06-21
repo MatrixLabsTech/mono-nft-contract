@@ -13,7 +13,7 @@ pub contract MonoCatMysteryBox : NonFungibleToken {
     pub event ContractInitialized()
     pub event Withdraw(id: UInt64, from: Address?)
     pub event Deposit(id: UInt64, to: Address?)
-    pub event Mint(id: UInt64, creator: Address, metadata: {String:String})
+    pub event Mint(id: UInt64, metadata: {String:String})
     pub event Destroy(id: UInt64)
 
     // We use dict to store raw metadata
@@ -23,16 +23,13 @@ pub contract MonoCatMysteryBox : NonFungibleToken {
 
     pub resource NFT: NonFungibleToken.INFT, MetadataViews.Resolver, RawMetadata {
         pub let id: UInt64
-        pub let creator: Address
         access(self) let metadata: {String:String}
 
         init(
             id: UInt64,
-            creator: Address,
             metadata: {String: String}
         ) {
             self.id = id
-            self.creator = creator
             self.metadata = metadata
         }
 
@@ -156,7 +153,6 @@ pub contract MonoCatMysteryBox : NonFungibleToken {
         // mintNFT mints a new NFT with a new ID
         // and deposit it in the recipients collection using their collection reference
         pub fun mintNFT(
-            creator: AuthAccount,
             recipient: &{NonFungibleToken.CollectionPublic},
             metadata: {String: String}
         ): &NonFungibleToken.NFT {
@@ -164,7 +160,6 @@ pub contract MonoCatMysteryBox : NonFungibleToken {
             // create a new NFT
             var newNFT <- create NFT(
                 id: MonoCatMysteryBox.totalSupply,
-                creator: creator.address,
                 metadata: metadata
             )
 
@@ -175,7 +170,7 @@ pub contract MonoCatMysteryBox : NonFungibleToken {
 
             MonoCatMysteryBox.totalSupply = MonoCatMysteryBox.totalSupply + 1
 
-            emit Mint(id: tokenRef.id, creator: creator.address, metadata: metadata)
+            emit Mint(id: tokenRef.id, metadata: metadata)
 
             return tokenRef
         }
