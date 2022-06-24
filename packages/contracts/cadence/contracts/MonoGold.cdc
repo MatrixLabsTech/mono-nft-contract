@@ -1,7 +1,7 @@
 import NonFungibleToken from "./lib/NonFungibleToken.cdc"
 import MetadataViews from "./lib/MetadataViews.cdc"
 
-pub contract MonoCatMysteryBox : NonFungibleToken {
+pub contract MonoGold : NonFungibleToken {
 
     pub var totalSupply: UInt64
 
@@ -63,11 +63,11 @@ pub contract MonoCatMysteryBox : NonFungibleToken {
         }
     }
 
-    pub resource interface MonoCatMysteryBoxCollectionPublic {
+    pub resource interface MonoGoldCollectionPublic {
         pub fun deposit(token: @NonFungibleToken.NFT)
         pub fun getIDs(): [UInt64]
         pub fun borrowNFT(id: UInt64): &NonFungibleToken.NFT
-        pub fun borrowMonoCatMysteryBox(id: UInt64): &MonoCatMysteryBox.NFT? {
+        pub fun borrowMonoGold(id: UInt64): &MonoGold.NFT? {
             post {
                 (result == nil) || (result?.id == id):
                     "Cannot borrow NFT reference: the ID of the returned reference is incorrect"
@@ -75,7 +75,7 @@ pub contract MonoCatMysteryBox : NonFungibleToken {
         }
     }
 
-    pub resource Collection: MonoCatMysteryBoxCollectionPublic, NonFungibleToken.Provider, NonFungibleToken.Receiver, NonFungibleToken.CollectionPublic, MetadataViews.ResolverCollection {
+    pub resource Collection: MonoGoldCollectionPublic, NonFungibleToken.Provider, NonFungibleToken.Receiver, NonFungibleToken.CollectionPublic, MetadataViews.ResolverCollection {
         // dictionary of NFT conforming tokens
         // NFT is a resource type with an `UInt64` ID field
         pub var ownedNFTs: @{UInt64: NonFungibleToken.NFT}
@@ -96,7 +96,7 @@ pub contract MonoCatMysteryBox : NonFungibleToken {
         // deposit takes a NFT and adds it to the collections dictionary
         // and adds the ID to the id array
         pub fun deposit(token: @NonFungibleToken.NFT) {
-            let token <- token as! @MonoCatMysteryBox.NFT
+            let token <- token as! @MonoGold.NFT
 
             let id: UInt64 = token.id
 
@@ -119,11 +119,11 @@ pub contract MonoCatMysteryBox : NonFungibleToken {
             return (&self.ownedNFTs[id] as &NonFungibleToken.NFT?)!
         }
 
-        pub fun borrowMonoCatMysteryBox(id: UInt64): &MonoCatMysteryBox.NFT? {
+        pub fun borrowMonoGold(id: UInt64): &MonoGold.NFT? {
             if self.ownedNFTs[id] != nil {
                 // Create an authorized reference to allow downcasting
                 let ref = (&self.ownedNFTs[id] as auth &NonFungibleToken.NFT?)!
-                return ref as! &MonoCatMysteryBox.NFT
+                return ref as! &MonoGold.NFT
             }
 
             return nil
@@ -131,7 +131,7 @@ pub contract MonoCatMysteryBox : NonFungibleToken {
 
         pub fun borrowViewResolver(id: UInt64): &AnyResource{MetadataViews.Resolver} {
             let nft = (&self.ownedNFTs[id] as auth &NonFungibleToken.NFT?)!
-            let mlNFT = nft as! &MonoCatMysteryBox.NFT
+            let mlNFT = nft as! &MonoGold.NFT
             return mlNFT
         }
 
@@ -159,7 +159,7 @@ pub contract MonoCatMysteryBox : NonFungibleToken {
 
             // create a new NFT
             var newNFT <- create NFT(
-                id: MonoCatMysteryBox.totalSupply,
+                id: MonoGold.totalSupply,
                 metadata: metadata
             )
 
@@ -168,7 +168,7 @@ pub contract MonoCatMysteryBox : NonFungibleToken {
             // deposit it in the recipient's account using their reference
             recipient.deposit(token: <-newNFT)
 
-            MonoCatMysteryBox.totalSupply = MonoCatMysteryBox.totalSupply + 1
+            MonoGold.totalSupply = MonoGold.totalSupply + 1
 
             emit Mint(id: tokenRef.id, metadata: metadata)
 
@@ -181,17 +181,17 @@ pub contract MonoCatMysteryBox : NonFungibleToken {
         self.totalSupply = 0
 
         // Set the named paths
-        self.CollectionStoragePath = /storage/MonoCatMysteryBoxCollection
-        self.CollectionPublicPath = /public/MonoCatMysteryBoxCollection
-        self.MinterStoragePath = /storage/MonoCatMysteryBoxMinter
-        self.MinterPublicPath = /public/MonoCatMysteryBoxMinter
+        self.CollectionStoragePath = /storage/MonoGoldCollection
+        self.CollectionPublicPath = /public/MonoGoldCollection
+        self.MinterStoragePath = /storage/MonoGoldMinter
+        self.MinterPublicPath = /public/MonoGoldMinter
 
         // Create a Collection resource and save it to storage
         let collection <- create Collection()
         self.account.save(<-collection, to: self.CollectionStoragePath)
 
         // create a public capability for the collection
-        self.account.link<&MonoCatMysteryBox.Collection{NonFungibleToken.Receiver, NonFungibleToken.CollectionPublic, MonoCatMysteryBox.MonoCatMysteryBoxCollectionPublic}>(
+        self.account.link<&MonoGold.Collection{NonFungibleToken.Receiver, NonFungibleToken.CollectionPublic, MonoGold.MonoGoldCollectionPublic}>(
             self.CollectionPublicPath,
             target: self.CollectionStoragePath
         )
