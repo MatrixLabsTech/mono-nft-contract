@@ -44,6 +44,7 @@
     "MonoCat": "./cadence/contracts/MonoCat.cdc",
     "MonoGold": "./cadence/contracts/MonoGold.cdc",
     "MonoSilver": "./cadence/contracts/MonoSilver.cdc",
+    "MonoPaymentMinter": "./cadence/contracts/MonoPaymentMinter.cdc",
     "MonoCatMysteryBox": "./cadence/contracts/MonoCatMysteryBox.cdc"
   },
   "networks": {
@@ -81,7 +82,7 @@
     },
     "testnet": {
       "testnet-account": [
-        "MonoGold", "MonoSilver"
+        "MonoPaymentMinter", "MonoGold", "MonoSilver"
       ]
     }
   }

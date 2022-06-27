@@ -1,5 +1,5 @@
-import NonFungibleToken from "./lib/NonFungibleToken.cdc"
-import MetadataViews from "./lib/MetadataViews.cdc"
+import NonFungibleToken from 0x1d7e57aa55817448
+import MetadataViews from 0x1d7e57aa55817448
 
 pub contract MonoCatMysteryBox : NonFungibleToken {
 
