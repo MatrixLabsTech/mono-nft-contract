@@ -42,6 +42,8 @@
       }
     },
     "MonoCat": "./cadence/contracts/MonoCat.cdc",
+    "MonoGold": "./cadence/contracts/MonoGold.cdc",
+    "MonoSilver": "./cadence/contracts/MonoSilver.cdc",
     "MonoCatMysteryBox": "./cadence/contracts/MonoCatMysteryBox.cdc"
   },
   "networks": {
@@ -79,7 +81,7 @@
     },
     "testnet": {
       "testnet-account": [
-        "MonoCat", "MonoCatMysteryBox"
+        "MonoGold", "MonoSilver"
       ]
     }
   }
