@@ -1,8 +1,8 @@
-import NonFungibleToken from "./lib/NonFungibleToken.cdc"
-import FungibleToken from "./lib/FungibleToken.cdc"
-import MonoGold from "./MonoGold.cdc"
-import MonoSilver from "./MonoSilver.cdc"
-import FUSD from "./lib/FUSD.cdc"
+import NonFungibleToken from 0x1d7e57aa55817448
+import FungibleToken from 0xf233dcee88fe0abe
+import MonoGold from 0x8529aaf64c168952
+import MonoSilver from 0x8529aaf64c168952
+import FUSD from 0x3c5959b568896393
 
 pub contract MonoPaymentMinter {
     pub let AdminStoragePath: StoragePath
