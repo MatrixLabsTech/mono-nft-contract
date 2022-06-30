@@ -1,0 +1,14 @@
+{
+  "accounts": {
+    "main": {
+      "address": "8529aaf64c168952",
+      "key": {
+        "type": "hex",
+        "index": 0,
+        "signatureAlgorithm": "ECDSA_secp256k1",
+        "hashAlgorithm": "SHA3_256",
+        "privateKey": "$PRIVATE_KEY"
+      }
+    }
+  }
+}

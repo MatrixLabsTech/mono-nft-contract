@@ -14,6 +14,9 @@ Deploy to mainnet
 ```bash
 flow accounts add-contract MonoCatMysteryBox ./cadence/contracts/MonoCatMysteryBox.cdc -f flow.json -f flow.mainnet.json -n mainnet --signer main
 flow accounts add-contract MonoCat ./cadence/contracts/MonoCat.cdc -f flow.json -f flow.mainnet.json -n mainnet --signer main
+flow accounts add-contract MonoSilver ./cadence/contracts/MonoSilver.cdc -f flow.json -f flow.mainnet.json -n mainnet --signer main
+flow accounts add-contract MonoGold ./cadence/contracts/MonoGold.cdc -f flow.json -f flow.mainnet.json -n mainnet --signer main
+flow accounts add-contract MonoPaymentMinter ./cadence/contracts/MonoPaymentMinter.cdc -f flow.json -f flow.mainnet.json -n mainnet --signer main
 ```
 
 ### Deployment
