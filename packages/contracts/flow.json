@@ -53,6 +53,16 @@
     "testnet": "access.devnet.nodes.onflow.org:9000"
   },
   "accounts": {
+    "main": {
+      "address": "8529aaf64c168952",
+      "key": {
+        "type": "hex",
+        "index": 0,
+        "signatureAlgorithm": "ECDSA_secp256k1",
+        "hashAlgorithm": "SHA3_256",
+        "privateKey": "$PRIVATE_KEY"
+      }
+    },
     "emulator-account2": {
       "address": "01cf0e2f2f715450",
       "key": "e00e33ee30228635894dab4640fd7aa4fd4e8b3218315c3042f73e1ad234acbb",
