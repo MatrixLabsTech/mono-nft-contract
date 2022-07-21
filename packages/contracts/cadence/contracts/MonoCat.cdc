@@ -157,6 +157,8 @@ pub contract MonoCat : NonFungibleToken {
             metadata: {String: String}
         ): &NonFungibleToken.NFT {
 
+            assert(MonoCat.totalSupply + 1 <= 12500, message:"Mint would exceed max supply")
+
             // create a new NFT
             var newNFT <- create NFT(
                 id: MonoCat.totalSupply,
